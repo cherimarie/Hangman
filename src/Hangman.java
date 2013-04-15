@@ -1,19 +1,28 @@
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Container;
+import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.lang.reflect.Array;
 
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 
-public class Hangman extends JFrame implements MouseListener, ActionListener
+public class Hangman extends JFrame implements ActionListener
 {
 	//X  be a window 
 	//X draw a gallows and lines for letters 
 	//X draw letters and make them invisible 
 	//X  create array of correct letters 
+	// make panel for text box, label, and button
 	//read user guesses
 	//compare guess against array
 	//if match, make visible the invisible letter
@@ -27,13 +36,43 @@ public class Hangman extends JFrame implements MouseListener, ActionListener
 	private String guess; 
 	private String wrongAnswers;
 	private String[] WORD = {"b", "a", "r", "f"};
+
 	
 	public Hangman()
 	{
 		super("Hangman");
 		setSize(WIDTH, HEIGHT);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);		
-		addMouseListener(this);			
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	
+		
+		JPanel hangPanel = new JPanel();
+		hangPanel.setPreferredSize(new Dimension(300, 255));
+		
+		
+		JPanel guessPanel = new JPanel();
+		guessPanel.setLayout(new BoxLayout(guessPanel, BoxLayout.LINE_AXIS));
+		guessPanel.setBackground(Color.MAGENTA); 
+		guessPanel.setPreferredSize(new Dimension(300, 80));
+		
+		JLabel labelGuess = new JLabel("Guess:");
+		guessPanel.add(labelGuess);
+		
+		JTextField txtGuess = new JTextField();
+		txtGuess.setColumns(3);
+		guessPanel.add(txtGuess);
+		
+		JButton btnGo = new JButton("go");
+		guessPanel.add(btnGo);
+		btnGo.addActionListener(this);
+		
+		
+		JPanel wrongPanel = new JPanel();
+		wrongPanel.setPreferredSize(new Dimension(300, 65));
+		
+		Container contentPane = getContentPane();
+		contentPane.add(hangPanel, BorderLayout.PAGE_START);
+		contentPane.add(guessPanel, BorderLayout.CENTER);
+		contentPane.add(wrongPanel, BorderLayout.PAGE_END);
+			
 	}
 	
 	public void paint(Graphics g)
@@ -76,19 +115,15 @@ public class Hangman extends JFrame implements MouseListener, ActionListener
 		wrongAnswers += guess + " ";
 		g.drawString(wrongAnswers, 25, 370);
 	}
-
-	public void actionPerformed(ActionEvent arg0) {}
-
-	public void mouseClicked(MouseEvent arg0) {}
-
-	public void mouseEntered(MouseEvent arg0) {}
-
-	public void mouseExited(MouseEvent arg0) {}
-
-	public void mousePressed(MouseEvent arg0) {}
-
-	public void mouseReleased(MouseEvent arg0) {}
 	
+	
+
+	public void actionPerformed(ActionEvent arg0) {
+		
+		
+	}
+
+
 	public static void main(String[] args){
 		Hangman window = new Hangman();
 		window.setVisible(true);
