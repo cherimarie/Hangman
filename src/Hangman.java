@@ -22,13 +22,13 @@ public class Hangman extends JFrame implements ActionListener
 	//X draw a gallows and lines for letters 
 	//X draw letters and make them invisible 
 	//X  create array of correct letters 
-	// make panel for text box, label, and button
+	//X make panel for text box, label, and button
 	//read user guesses
 	//compare guess against array
 	//if match, make visible the invisible letter
 	//if not match, print letter in "wrong" section
 	//if not match, draw part of hung man
-	//set max # of allowable guesses
+	//X set max # of allowable guesses
 	//if max # reached, print "you lose"
 	//if all letters guessed before max # reached, print "you win" 
 	private static final int WIDTH = 300;
@@ -36,6 +36,7 @@ public class Hangman extends JFrame implements ActionListener
 	private String guess; 
 	private String wrongAnswers;
 	private String[] WORD = {"b", "a", "r", "f"};
+	private static final int MAXGUESS = 12;
 
 	
 	public Hangman()
@@ -72,7 +73,14 @@ public class Hangman extends JFrame implements ActionListener
 		contentPane.add(hangPanel, BorderLayout.PAGE_START);
 		contentPane.add(guessPanel, BorderLayout.CENTER);
 		contentPane.add(wrongPanel, BorderLayout.PAGE_END);
+		
+		
 			
+	}
+	
+	public void play(){
+		
+		
 	}
 	
 	public void paint(Graphics g)
@@ -119,7 +127,7 @@ public class Hangman extends JFrame implements ActionListener
 	
 
 	public void actionPerformed(ActionEvent arg0) {
-		
+		play();
 		
 	}
 
